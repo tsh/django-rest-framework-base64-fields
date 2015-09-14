@@ -19,5 +19,5 @@ class MainTestCase(TestCase):
         fieldFile = MagicMock()
         fieldFile.url = 'test.url'
         representation = self.base64_file_field.to_representation(fieldFile)
-        self.assertEqual(representation.url, fieldFile.url)
+        self.assertEqual(representation, fieldFile.url)
 
