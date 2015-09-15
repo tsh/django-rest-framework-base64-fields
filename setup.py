@@ -6,13 +6,6 @@ import re
 from setuptools import Command, setup, find_packages
 
 
-_version_re = re.compile(r'__version__\s+=\s+(.*)')
-
-with open('django_rest_framework_base64_fields/__init__.py', 'rb') as f:
-    version = str(ast.literal_eval(_version_re.search(
-        f.read().decode('utf-8')).group(1)))
-
-
 class Test(Command):
     user_options = []
 
@@ -29,7 +22,7 @@ class Test(Command):
 
 setup(
     name='django-rest-framework-base64-fields',
-    version=version,
+    version='0.1.1',
     url='https://github.com/tsh/django-rest-framework-base64-fields',
     license='MIT',
     author='Anton Nikulin',
@@ -48,7 +41,6 @@ setup(
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'Framework :: Django',
-        'Framework :: djangorestframework',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
