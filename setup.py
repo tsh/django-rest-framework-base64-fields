@@ -22,7 +22,7 @@ class Test(Command):
 
 setup(
     name='django-rest-framework-base64-fields',
-    version='0.1.1',
+    version='0.1.2',
     url='https://github.com/tsh/django-rest-framework-base64-fields',
     license='MIT',
     author='Anton Nikulin',

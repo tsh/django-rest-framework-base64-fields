@@ -1,6 +1,7 @@
+from unittest import TestCase
 from unittest.mock import MagicMock
 
-from django.test import TestCase
+from rest_framework import serializers
 
 from django_rest_framework_base64_fields import Base64FileField
 
@@ -21,3 +22,6 @@ class MainTestCase(TestCase):
         representation = self.base64_file_field.to_representation(fieldFile)
         self.assertEqual(representation, fieldFile.url)
 
+    def test_incorrect_type_not_string(self):
+        with self.assertRaises(serializers.ValidationError):
+            self.base64_file_field.to_internal_value({})  # dict is incorrect

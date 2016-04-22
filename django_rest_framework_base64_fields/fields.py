@@ -20,11 +20,13 @@ class Base64FileField(Field):
     _ERROR_MESSAGE = _('Base64 string is incorrect')
 
     def to_internal_value(self, data):
+        if not isinstance(data, str):
+            raise serializers.ValidationError(self._ERROR_MESSAGE)
         try:
             mime, encoded_data = data.replace('data:', '', 1).split(';base64,')
             extension = self._MIME_MAPPING[mime] if mime in self._MIME_MAPPING.keys() else mimetypes.guess_extension(mime)
             file = ContentFile(base64.b64decode(encoded_data), name='{name}{extension}'.format(name=str(uuid.uuid4()),
-                                                                                           extension=extension))
+                                                                                               extension=extension))
         except (ValueError, binascii.Error):
             raise serializers.ValidationError(self._ERROR_MESSAGE)
         return file
